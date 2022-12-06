@@ -27,4 +27,7 @@ router.get('/cerrar', (req, res)=>{
       });
     res.send("Hola")
 })
+router.post('/probando', (req, res)=>{
+    console.log(req.body)
+})
 module.exports = router;
