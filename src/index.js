@@ -30,7 +30,7 @@ app.use((req,res,next)=>{
     next();
 });
 //Routes
-app.use(require('./routes/prueba'));
+app.use('/api', require('./routes/index'));
 //Public
 
 //Starting the server

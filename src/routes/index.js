@@ -3,7 +3,7 @@ const router = Router();
 const passport = require('passport');
 const {isLoggedIn} = require('../lib/auth')
 
-router.post('/prueba', passport.authenticate('local.signup', {
+router.post('/signUp', passport.authenticate('local.signup', {
     successRedirect: '/hola',
     failureRedirect: '/'
 }));
