@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors')
 const session = require('express-session')
 const MYSQLStore = require('express-mysql-session')
 const passport = require('passport')
@@ -11,9 +12,10 @@ const app = express();
 require('./lib/passport');
 
 //settings
-app.set('port', process.env.PORT || 3000)
+app.set('port', process.env.PORT || 4000)
 
 //midlewars
+app.use(cors({origin: "http://localhost:3000", credentials: true}))
 app.use(session({
     secret: "AKjsnasi",
     resave: false,
@@ -30,7 +32,8 @@ app.use((req,res,next)=>{
     next();
 });
 //Routes
-app.use('/api', require('./routes/index'));
+app.use(require('./routes/authentications'));
+app.use('/api', require('./routes/links'));
 //Public
 
 //Starting the server

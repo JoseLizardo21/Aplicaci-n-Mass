@@ -3,12 +3,12 @@ module.exports = {
         if(req.isAuthenticated()){
             return next();
         }
-        return res.send('debe de iniciar sesión');
+        return res.json({isLoggedIn: false});
     },
-    isNotLogedIn(req, res, next){
+    isNotLoggedIn(req, res, next){
         if(!req.isAuthenticated()){
             return next();
         }
-        return res.redirect('/profile');
+        return res.json({isLoggedIn: true});
     }
 }

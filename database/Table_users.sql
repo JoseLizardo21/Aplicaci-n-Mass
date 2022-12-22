@@ -7,4 +7,10 @@ CREATE TABLE users(
 );
 
 ALTER TABLE users
-    
+    ADD PRIMARY KEY (id);
+
+ALTER TABLE users
+    MODIFY id INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 1;
+
+ALTER TABLE users 
+    ADD phoneNumber INT(11); 
