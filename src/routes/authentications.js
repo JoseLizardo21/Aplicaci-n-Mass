@@ -10,7 +10,6 @@ router.post('/VerifyAccount', async(req, res)=>{
     const {code} = req.body;
     const rowVer = await pool.query('SELECT * FROM VerificationCodes WHERE user_id = ?', [req.user.id]);
     if(rowVer[0].usrCreationCode == code){
-        console.log("llegó")
         await pool.query('UPDATE VerificationCodes SET VerifiedAccount = 1');
         res.json({success: true});
     }else{
@@ -23,8 +22,8 @@ router.post('/signUp', passport.authenticate('local.signup', {
 }));
 router.post('/signin', isNotLoggedIn, (req, res, next)=>{
     passport.authenticate('local.signin', {
-        successRedirect: 'p',
-        failureRedirect: 'nu',
+        successRedirect: 'success',
+        failureRedirect: 'failure',
     })(req, res, next);
 });
 router.get('/success', (req, res)=>{
@@ -39,7 +38,7 @@ router.post('/success', (req, res)=>{
 router.post('/failure', (req, res)=>{
     res.json({success: false});
 })
-router.get('/cerrar', (req, res)=>{
+router.get('/logout', (req, res)=>{
     req.logOut(function(err) {
         if (err) {return next(err);}
         
