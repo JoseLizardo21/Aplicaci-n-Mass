@@ -1,9 +1,9 @@
 const express = require('express');
+const path = require('path')
 const cors = require('cors')
 const session = require('express-session')
 const MYSQLStore = require('express-mysql-session')
 const passport = require('passport')
-
 
 const {database} = require('./keys')
 
@@ -34,7 +34,11 @@ app.use((req,res,next)=>{
 //Routes
 app.use(require('./routes/authentications'));
 app.use('/api', require('./routes/links'));
+app.use(require('./routes/profile/image.routes'));
+
+
 //Public
+app.use(express.static(path.join(__dirname, 'public')));
 
 //Starting the server
 app.listen(app.get('port'), ()=>{
